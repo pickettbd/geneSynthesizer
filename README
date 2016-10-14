@@ -14,7 +14,10 @@ III. Usage Instructions
 
 I. Introduction
 ---------------
-
+In vitro synthesis of genes from oligonucleotides requires one to design
+forward and reverse primers in preparation for the "single-pot" PCR run. This
+software provides a simple CLI to generate these primers in silico, taking only
+a fasta file (and some optional parameters) as input.
 
 II. Installation Instructions
 -----------------------------
@@ -30,8 +33,8 @@ To uninstall, type `make clean'.
 See `INSTALL' for further instructions.
 
 
-III. Usage Instructions and Examples
--------------------------------------
+III. Usage Instructions
+-----------------------
 Please run the software with the `--help' option for complete usage instructions
 (i.e., type `geneSynthesizer -h' or `geneSynthesizer --help'). The format of the
 input and output files is described below; followed by usage examples.
@@ -45,7 +48,7 @@ Input File Format:
         any leading or trailing whitespace. The header line must not contain any
         tabs. The sequence lines must not contain whitespace between
         nucleotides. Mixed-case nucleotides are acceptable; they will be
-        replaced with uppercase nucleotides for finding SSRs.
+        replaced with uppercase nucleotides for primer design.
 
     Good Example:
 
@@ -136,8 +139,17 @@ Please see `LICENSE'.
 
 V. Funding and Acknowledgements
 -------------------------------
-Funding for the research and production of this software was provided by
-startup funds to Dr. Perry Ridge.
+The production of this software received no funding. Thanks to Dr. Joel
+Griffitts (Brigham Young University) for providing the equations to determine
+appropriate primer length and number of primers given an overlap length and the
+length of the gene:
+
+g = pn - h(n - 1)
+
+g: gene length
+h: hybridization (overlap) length
+n: number of primers
+p: primer length
 
 
 VI. Contact
@@ -147,5 +159,5 @@ contact:
 
 Brandon Pickett -- pickettbd@byu.edu
 
-Note: For usage questions, please consult section `III. Usage Instructions and
-Examples' first.
+Note: For usage questions, please consult section `III. Usage Instructions'
+first.
