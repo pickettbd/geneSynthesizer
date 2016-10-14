@@ -19,6 +19,7 @@ forward and reverse primers in preparation for the "single-pot" PCR run. This
 software provides a simple CLI to generate these primers in silico, taking only
 a fasta file (and some optional parameters) as input.
 
+
 II. Installation Instructions
 -----------------------------
 geneSynthesizer is written in Python (3, not 2!). To install, simply type
