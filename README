@@ -1,0 +1,151 @@
+README
+======
+
+Table of Contents
+-----------------
+
+  I. Introduction
+ II. Installation Instructions
+III. Usage Instructions
+ IV. License
+  V. Funding and Acknowledgements
+ VI. Contact
+
+
+I. Introduction
+---------------
+
+
+II. Installation Instructions
+-----------------------------
+geneSynthesizer is written in Python (3, not 2!). To install, simply type
+`make'. The binary will be in the `bin' directory.
+
+To install a binary outside this package, type `make' followed by
+`make install'.  The binary will be in both the `bin' and `/usr/local/bin'
+directories (to change this, change the `PREFIX' variable in `Makefile').  
+
+To uninstall, type `make clean'.
+
+See `INSTALL' for further instructions.
+
+
+III. Usage Instructions and Examples
+-------------------------------------
+Please run the software with the `--help' option for complete usage instructions
+(i.e., type `geneSynthesizer -h' or `geneSynthesizer --help'). The format of the
+input and output files is described below; followed by usage examples.
+
+Input File Format:
+
+    Description:
+
+        The input file must be in Fasta format. The sequences may be on a single
+        line or multiple lines. The header and sequence lines must not contain
+        any leading or trailing whitespace. The header line must not contain any
+        tabs. The sequence lines must not contain whitespace between
+        nucleotides. Mixed-case nucleotides are acceptable; they will be
+        replaced with uppercase nucleotides for finding SSRs.
+
+    Good Example:
+
+        >sequence 1
+        AGCGTGTCGTGTACACGTGTACGTACGTACGATCGATGCTACGTAGCATCGATCGACGTATCGTATCGATC
+        CACGTGTACGTACGTACGATCGATGCTACGTAGCATCGATCGACGTATCGTATCGATCAGCGTGTCGTGTA
+        .
+        .
+        .
+        >sequence 2
+        cgtacgatcgatgctacgtagcatcgatcgacgtatcgtatcgatcagcgtgtcgtgtacacgtgtacgta
+        gatcgacgtatcgtatcgatcagcgtgtcgtgtacacgtgtacgtacgtacgatcgatgctacgtagcatc
+        .
+        .
+        .
+        >sequence 3
+        taTCgATCAGCGtGTCGTGTAcACGTGTACGTAcgtaCGAtCgATGCTACGTagcatCGATCGACGTATCG
+        cgtacgtacgATCGATGCTACGTaGCATCGaTCGaCGTAtCGTAtcgatcaGCGTGTCGTGTAcacgtgta
+        .
+        .
+        .
+
+Output File Format:
+
+    Description:
+
+        The output file has one record per header/sequence pair in the input
+        fasta file. Each record has 2 sections (with an optional third section
+        between the other two). The first section has three lines with
+        name-value pairs, separated by a colon and a space (": "). These names
+        are "ID", "Length", and "Overlap". The "ID" is the fasta header. The
+        "Length" is the number of nucleotides in the fasta sequence. The
+        "Overlap" is the number of nucleotides that overlap between primers.
+
+        Given an overlap of 20, the "example/GFP.fasta" (which has only one
+        sequence) will look like this:
+
+                ID: Green Fluorescent Protein (GFP)
+                Length: 717
+                Overlap: 20
+        
+        The optional section contains a title line ("Overlap-View:"), followed
+        by one line per primer. Each primer is padded with spaces to show the
+        overlapping sections.
+
+        The final section is tab-delimited. The first line is a title line and
+        can easily be identified (for parsing purposes) because it begins with
+        a "#". Remember, in a tab-delimited file, the columns may not align
+        when viewed with a simple text editor. The columns (in order) are:
+
+                Primer-Number
+                For./Rev.
+                Sequence(5'->3')
+                Length
+
+        Each of the columns are described below:
+
+        Primer-Number: The primer number, counted left-to-right, starting with
+                       the number one.
+
+            For./Rev.: Each primer is identified as "F" (Forward) or "R"
+                       (Reverse). It is also given a number, counted
+                       left-to-right, starting with the number one. The count
+                       is separate for the forward and reverse primers. As an
+                       example, if there are 4 primers, the "Primer-Number"
+		       will be 1, 2, 3, and 4. The "For./Rev." will be F-1,
+		       F-2, R-1, and R-2, respectively.
+
+     Sequence(5'->3'): The actual primer sequence, writen 5' to 3'.
+
+               Length: The number of nucleotides in the primer.
+
+        As a simple illustration of this section of the  output file, consider
+        the following example with a primer length of 10, an overlap length of
+	3, and sequence length of 41 (formatted here for readability):
+
+                #Primer-Number   For./Rev.   Sequence(5'->3')   Length
+                1                F-1         ACGTACGTAC         10
+                2                F-2         TACGTACGTA         10
+                3                R-1         GTACGTACGT         10
+                4                R-2         CGTACGTACGT        11
+
+
+IV. License
+-----------
+Please see `LICENSE'.
+
+
+V. Funding and Acknowledgements
+-------------------------------
+Funding for the research and production of this software was provided by
+startup funds to Dr. Perry Ridge.
+
+
+VI. Contact
+-----------
+For questions, comments, concerns, feature requests, suggestions, etc., please
+contact:
+
+Brandon Pickett -- pickettbd@byu.edu
+
+Note: For usage questions, please consult section `III. Usage Instructions and
+Examples' first.

@@ -1,0 +1,33 @@
+INSTALLATION INSTRUCTIONS
+=========================
+
+COMPILE
+-------
+Simply type `make'.  The program will be in the `bin' directory. If `python3'
+doesn't invoke Python 3.5.1+ on your system, please change the `PYTHON3_BINARY'
+variable near the top of the `Makefile' to the appropriate command (a full path
+is also acceptable) before you type `make'.
+
+
+INSTALL
+-------
+Type `make' followed by `make install'.  The binary will be in both the `bin'
+and `/usr/local/bin' directories.  To change the installation location, change
+the `PREFIX' variable near the top of `Makefile'.  
+
+
+UNINSTALL
+---------
+Simply type `make clean'.  This will remove the binary in the `bin' directory.
+If you installed with `make install', also type `make uninstall' to remove the
+binary at the path provided by the `PREFIX' variable in the `Makefile'.
+
+The compiled python code (.pyc) files in the `src/__pycache__' directory will not be deleted. To remove
+those files as well, type `make realclean'. If you use `make realclean', you
+need not first type `make clean' as it will do it for you. Running `make
+realclean' will also remove the `bin' and `src/__pycache__' directories.
+
+
+IMPORTANT NOTES
+---------------
+Your system must have Python 3.5.1+.
