@@ -3,7 +3,7 @@ INSTALLATION INSTRUCTIONS
 
 COMPILE
 -------
-Simply type `make'.  The program will be in the `bin' directory. If `python3'
+Simply type `make'.  The program will be in the `bin' directory. If `python'
 doesn't invoke Python 3.5.1+ on your system, please change the `PYTHON3_BINARY'
 variable near the top of the `Makefile' to the appropriate command (a full path
 is also acceptable) before you type `make'.
