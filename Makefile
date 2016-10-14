@@ -13,7 +13,7 @@ clean:
 	@rm -rf bin/* || true
 	@if [ -e $(PREFIX)/geneSynthesizer -a -r $(PREFIX)/geneSynthesizer -a -w $(PREFIX)/geneSynthesizer ] ; then rm -f $(PREFIX)/geneSynthesizer || true; fi
 	@chmod 640 src/* || true
-	@chmod 770 src/__pycache__ || true
+	@chmod 770 src/__pycache__ &> /dev/null || true
 
 realclean: clean
 	@rm -rf bin src/__pycache__ src/*.pyc || true
